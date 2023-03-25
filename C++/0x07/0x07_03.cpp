@@ -8,7 +8,6 @@ using namespace std;
 vector<int> split(const string &str, char sep)
 {
     vector<int> tokens;
- 
     int i;
     stringstream ss(str);
     while (ss >> i) {
@@ -17,7 +16,6 @@ vector<int> split(const string &str, char sep)
             ss.ignore();
         }
     }
- 
     return tokens;
 }
 
@@ -31,57 +29,95 @@ int main()
 
     while(user_cnt--)
     {
-        deque<int> DQ;
-        string str, user_arr;
-        int arr_num, tmp, result=1;
-        char separator = ',';
+        bool front_back = false;
+        int num, len, result = 0;
+        char action;
+        string user_str, user_arr;
+        deque<char> DQ_str;
+        deque<int> DQ_arr;
 
-        cin >> str >> arr_num >> user_arr;
-
-        vector<int> arr = split(user_arr.substr(1, user_arr.length()-2), ',');
-                
-        for(int i=0; i < arr_num  ; i++) // queue에 배열 넣기
+        cin >> user_str >> len >> user_arr;
+        
+        for(auto s : user_str) // 함수 조합 간소화
         {
-            DQ.push_back(arr[i]);
+            if(s == 'D')
+            {
+                DQ_str.push_back('D');
+            }
+            else if(s == 'R')
+            {
+                if(!DQ_str.empty() && DQ_str.back() == 'R')
+                {
+                    DQ_str.pop_back();
+                }
+                else DQ_str.push_back('R');
+            }
         }
 
-        for(char C : str)
+        vector<int> arr = split(user_arr.substr(1, user_arr.length()-2), ','); 
+
+        for(int i=0; i < len; i++) // 배열을 큐에 담기
         {
-            if(C =='D')
+            DQ_arr.push_back(arr[i]);
+        }
+
+        while(!DQ_str.empty())
+        {
+            action = DQ_str.front();
+            DQ_str.pop_front();
+            
+            if(!DQ_arr.empty() && action == 'R')
             {
-                if(!DQ.empty()) DQ.pop_front();
-                else
-                {
-                    result = 0;
-                    break;
-                }
+                if(front_back == false) front_back = true;
+                else if(front_back == true) front_back == false;
             }
-            else if(C =='R')
+            else if(!DQ_arr.empty() && action == 'D')
             {
-                for(int i=0; i < DQ.size()/2 ;i++)
-                {
-                    swap(DQ[i], DQ[DQ.size()-1-i]);
-                }
+                if(front_back == false) DQ_arr.pop_front();
+                else if(front_back == true) DQ_arr.pop_back();
             }
-            else;
+            else
+            {
+                result = 1;
+                break;
+            }
         }
 
 
-        if(result==0) cout << "error\n";
+        // 출력
+        if(result == 1)
+        {
+            cout << "error" << "\n";
+            break;
+        }
+
+        cout << "[";
+        if(front_back == false) 
+        {
+            while(!DQ_arr.empty())
+            {
+                cout << DQ_arr.front();
+                DQ_arr.pop_front();
+                if(!DQ_arr.empty()) cout << ",";
+             }
+        }
         else
         {
-            cout << "[";
-            for(int i=0; i < DQ.size(); i++)
+            while(!DQ_arr.empty())
             {
-                cout << DQ[i];
-                if(i != DQ.size()-1) cout << ",";
+                cout << DQ_arr.back();
+                DQ_arr.pop_back();
+                if(!DQ_arr.empty()) cout << ",";
             }
-            cout << "]\n";
         }
-
+        cout << "]\n";
     }
-
 }
 
-// 다시
-// 시간 초과
+
+
+
+// split 함수 분석해보기
+
+// 틀린 이유 : 시간 초과 (swap 사용)
+// 틀린 이유 : ??
