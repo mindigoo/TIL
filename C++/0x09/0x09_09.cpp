@@ -1,5 +1,5 @@
-// https://www.acmicpc.net/problem/7569
-// 7569번. 토마토
+// https://www.acmicpc.net/problem/5427
+// 5427번. 불
 
 #include<bits/stdc++.h>
 
@@ -19,6 +19,5 @@ int main()
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int n, m, l;
-    cin >> n, m, l;
+
 }
