@@ -3,10 +3,6 @@
 
 #include<bits/stdc++.h>
 
-#define X first
-#define Y second
-#define Z third
-
 using namespace std;
 
 string board[35][35];
