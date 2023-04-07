@@ -59,8 +59,8 @@ void func(int k, int st){
     return;
   }
   int tmp = -1;
-  for(int i = st; i < n; i++){
-    if(num[i] != tmp){
+  for(int i = st; i < n; i++){ // 이전 숫자랑 같은 수부터 시작
+    if(num[i] != tmp){ // 똑같은 숫자 반복 출력 방지
       arr[k] = num[i];
       tmp = arr[k];
       func(k+1, i);
