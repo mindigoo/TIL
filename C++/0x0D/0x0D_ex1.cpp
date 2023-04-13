@@ -15,9 +15,7 @@ vector<pair<int,int>> CCTV_arr; // CCTV 위치 정보
 vector<int> CCTV_cnt_arr; // CCTV 회전 횟수
 
 /*
-int test=0;
-void ViewUserArrStatus()
-{
+void ViewUserArrStatus(){
     cout << "\n";
     for(int i=0; i<height; i++){
         for(int j=0; j<width; j++){
@@ -134,14 +132,17 @@ void CCTV_five(int n, int i){ // 5번종류 CCTV (네 방향)
 }
 
 // CCTV 번호 확인
+void CheckCCTVNumber(int CCTVnumber, int n, int i){
+    if(CCTVnumber == 1) CCTV_one(n, i);
+    else if(CCTVnumber == 2) CCTV_two(n, i);
+    else if(CCTVnumber == 3) CCTV_three(n, i);
+    else if(CCTVnumber == 4) CCTV_four(n, i);
+    else if(CCTVnumber == 5) CCTV_five(n, i);
+}
+
+// CCTV 감시 구역
 void CalCCTVRange(int n, int i){
-    auto pos = CCTV_arr[n];
-    if(user_arr[pos.X][pos.Y] == 1) CCTV_one(n, i);
-    else if(user_arr[pos.X][pos.Y] == 2) CCTV_two(n, i);
-    else if(user_arr[pos.X][pos.Y] == 3) CCTV_three(n, i);
-    else if(user_arr[pos.X][pos.Y] == 4) CCTV_four(n, i);
-    else if(user_arr[pos.X][pos.Y] == 5) CCTV_five(n, i);
-    else ;
+    CheckCCTVNumber(user_arr[CCTV_arr[n].X][CCTV_arr[n].Y], n, i);
 }
 
 // 최소 사각지대 구하기
