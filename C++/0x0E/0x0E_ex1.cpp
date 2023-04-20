@@ -34,11 +34,11 @@ void MergeSort(){
             arr3.push_back(arr1[arr1_idx]);
             arr1_idx++;
         }
-        else if(arr1[arr1_idx] < arr2[arr2_idx]){
+        else if(arr1[arr1_idx] <= arr2[arr2_idx]){
             arr3.push_back(arr1[arr1_idx]);
             arr1_idx++;
         }
-        else if(arr1[arr1_idx] >= arr2[arr2_idx]){
+        else if(arr1[arr1_idx] > arr2[arr2_idx]){
             arr3.push_back(arr2[arr2_idx]);
             arr2_idx++;
         }

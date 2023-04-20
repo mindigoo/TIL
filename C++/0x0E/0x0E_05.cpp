@@ -1,5 +1,5 @@
-// https://www.acmicpc.net/problem/2750
-// 2750번. 수 정렬하기
+// https://www.acmicpc.net/problem/15688
+// 15688번. 수 정렬하기5
 
 #include<bits/stdc++.h>
 
@@ -25,6 +25,7 @@ void OutputData(){
 }
 
 int main(){
+
     ios::sync_with_stdio(0);
     cin.tie(0);
 

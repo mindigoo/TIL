@@ -1,5 +1,5 @@
-// https://www.acmicpc.net/problem/2750
-// 2750번. 수 정렬하기
+// https://www.acmicpc.net/problem/2751
+// 2751번. 수 정렬하기2
 
 #include<bits/stdc++.h>
 
@@ -32,3 +32,7 @@ int main(){
     sort(v.begin(), v.end());
     OutputData();
 }
+
+/*
+STL sort 는 quick sort 이지만 일반적으로 알고있는 구조에서 변형된 정렬로, 최악의 경우에도 O(NlogN) 유지.
+*/
