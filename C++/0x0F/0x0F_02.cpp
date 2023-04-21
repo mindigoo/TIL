@@ -1,54 +1,42 @@
-// https://www.acmicpc.net/problem/1431
-// 1432번. 시리얼 번호
+// https://www.acmicpc.net/problem/11652
+// 11652번. 카드
 
 #include<bits/stdc++.h>
 
 using namespace std;
 
-vector<int> arr1, arr2, arr3;
+int max_cnt = 0, cur_cnt = 0;
+long long max_number;
+
+vector<long long> v;
 
 void InputUserDate(){
-    int arr1_len, arr2_len, num;
-    cin >> arr1_len >> arr2_len;
+    int cnt;
+    cin >> cnt;
 
-    while(arr1_len--){
+    long long num;
+    while(cnt--){
         cin >> num;
-        arr1.push_back(num);
-    }
-    while(arr2_len--){
-        cin >> num;
-        arr2.push_back(num);
+        v.push_back(num);
     }
 }
 
-void MergeSort(){
-    int arr1_idx=0, arr2_idx=0;
-    int cnt = arr1.size() + arr2.size();
-
-    while(cnt--){
-        if(arr1_idx == arr1.size()){
-            arr3.push_back(arr2[arr2_idx]);
-            arr2_idx++;
+void CheckMaxCard(){
+    for(int i=0; i < v.size(); i++){
+        if(i > 0 && v[i] != v[i-1]){
+            if(max_cnt < cur_cnt){
+                max_cnt = cur_cnt;
+                max_number = v[i-1];
+            }
+            cur_cnt = 0;
         }
-        else if(arr2_idx == arr2.size()){
-            arr3.push_back(arr1[arr1_idx]);
-            arr1_idx++;
-        }
-        else if(arr1[arr1_idx] <= arr2[arr2_idx]){
-            arr3.push_back(arr1[arr1_idx]);
-            arr1_idx++;
-        }
-        else if(arr1[arr1_idx] > arr2[arr2_idx]){
-            arr3.push_back(arr2[arr2_idx]);
-            arr2_idx++;
-        }
+        cur_cnt++;
     }
+    if(max_cnt < cur_cnt) max_number = v[v.size()-1];
 }
 
 void OutputData(){
-    for(int i=0; i < arr3.size() ;i++){
-        cout << arr3[i] << " ";
-    } cout << "\n";
+    cout << max_number << "\n";
 }
 
 int main(){
@@ -57,8 +45,12 @@ int main(){
     cin.tie(0);
 
     InputUserDate();
-    MergeSort();
+    sort(v.begin(), v.end());
+    CheckMaxCard();
     OutputData();
 }
 
-// 틀린 이유 : 시간 초과 => ios::sync_with_stdio(0);, cin.tie(0); (https://www.acmicpc.net/problem/15552)
+// 툴린 이유 : 변수(long long)
+
+// 시간 복잡도 => 정렬 : O(NlogN), 큰 수 찾기 : O(N) => O(NlogN)
+// -(1ll << 62) - 1 : 1을 long long으로 형변환하지 않고 1 << 62로 작성시 int overflow 발생

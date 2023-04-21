@@ -18,8 +18,8 @@ void InputUserDate(){
 }
 
 bool Cmp(const string &a, const string &b){
-    if(a.length() < b.length()) return true;
-    else if(a.length() == b.length()){
+    if(a.length() < b.length()) return true; // 길이순
+    else if(a.length() == b.length()){ // 크기순
         int a_sum = 0, b_sum = 0;
         for(int i=0; i< a.length(); i++){
             if(a[i] >= 48 && a[i] < 58) a_sum += (a[i]-48);
@@ -27,7 +27,7 @@ bool Cmp(const string &a, const string &b){
         }
         if(a_sum < b_sum) return true;
         else if(a_sum == b_sum){
-            return a < b;
+            return a < b; // 사전순
         }
         else return false;
     }
