@@ -1,22 +1,34 @@
-// https://www.acmicpc.net/problem/11652
-// 11652번. 카드
+// https://www.acmicpc.net/problem/10814
+// 10814번. 나이순 정렬 
 
 #include<bits/stdc++.h>
 
+#define X first
+#define Y second
+
 using namespace std;
 
-void InputUserDate(){
-    int cnt;
-    cin >> cnt;
+vector<pair<int,string>> v;
 
-    unsigned long int num;
+void InputUserDate(){
+    string name;
+    int cnt, year;
+    cin >> cnt;
     while(cnt--){
-        cin >> num;
+        cin >> year >> name;
+
+        v.push_back({year, name});
     }
 }
 
 void OutputData(){
-    
+    for(int i=0; i < v.size() ;i++){
+        cout << v[i].X << " " << v[i].Y  << "\n";
+    }
+}
+
+bool cmp(pair<int,string> a, pair<int, string> b){
+    return a.X < b.X;
 }
 
 int main(){
@@ -25,6 +37,6 @@ int main(){
     cin.tie(0);
 
     InputUserDate();
+    stable_sort(v.begin(), v.end(), cmp);
     OutputData();
 }
-

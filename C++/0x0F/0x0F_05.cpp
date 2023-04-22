@@ -1,22 +1,45 @@
-// https://www.acmicpc.net/problem/11652
-// 11652번. 카드
+// https://www.acmicpc.net/problem/2910
+// 2910번. 빈도 정렬
 
 #include<bits/stdc++.h>
 
+#define X first
+#define Y second
+
 using namespace std;
 
-void InputUserDate(){
-    int cnt;
-    cin >> cnt;
+vector<pair<int,int>> v;
 
-    unsigned long int num;
+void Check(int num){
+    for(int i=0; i < v.size(); i++){
+        if(v[i].X == num){
+            v[i].Y++;
+            return;
+        }
+    }
+    v.push_back({num, 1});
+}
+
+void InputUserDate(){
+    int cnt, max;
+    cin >> cnt >> max;
+
+    int num;
     while(cnt--){
         cin >> num;
+        Check(num);
     }
 }
 
 void OutputData(){
-    
+    for(int i=0; i< v.size(); i++){
+        for(int j=0; j<v[i].Y; j++)
+            cout << v[i].X << " ";
+    }    
+}
+
+bool Cmp(pair<int,int> a, pair<int,int> b){
+    return a.Y > b.Y;
 }
 
 int main(){
@@ -25,6 +48,7 @@ int main(){
     cin.tie(0);
 
     InputUserDate();
+    stable_sort(v.begin(), v.end(), Cmp);
     OutputData();
 }
 

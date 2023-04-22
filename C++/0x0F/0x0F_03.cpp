@@ -5,21 +5,29 @@
 
 using namespace std;
 
-vector<int> v;
+vector<long long> v;
+
+void Change(string &num){
+    for(int i=0; i < num.length()/2; i++){
+        swap(num[i], num[num.length()-1-i]);
+    }
+}
 
 void InputUserDate(){
-    int cnt, num;
+    int cnt;
     cin >> cnt;
 
+    string num;
     while(cnt--){
         cin >> num;
-        v.push_back(num);
+        Change(num);
+        v.push_back(stoll(num));
     }
 }
 
 void OutputData(){
     for(int i=0; i<v.size() ;i++){
-        cout << v[i] << " ";
+        cout << v[i] << "\n";
     }
 }
 
@@ -29,6 +37,8 @@ int main(){
     cin.tie(0);
 
     InputUserDate();
+    sort(v.begin(), v.end());
     OutputData();
 }
 
+// 틀린 이유 : 런타임 에러(out of range) - 정수형 범위 밖

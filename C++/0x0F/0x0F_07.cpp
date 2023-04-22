@@ -1,25 +1,28 @@
-// https://www.acmicpc.net/problem/5648
-// 5648번. 역원소 정렬
+// https://www.acmicpc.net/problem/11656
+// 11656번. 접미사 배열
 
 #include<bits/stdc++.h>
 
 using namespace std;
 
-vector<int> v;
+vector<string> v;
+int a[26][1000];
+
+void Check(string str){
+    for(int i=0; i<str.length(); i++){
+        v.push_back(str.substr(i, str.length()-i));
+    }
+}
 
 void InputUserDate(){
-    int cnt, num;
-    cin >> cnt;
-
-    while(cnt--){
-        cin >> num;
-        v.push_back(num);
-    }
+    string str;
+    cin >> str;
+    Check(str);
 }
 
 void OutputData(){
     for(int i=0; i<v.size() ;i++){
-        cout << v[i] << " ";
+        cout << v[i] << "\n";
     }
 }
 
@@ -29,6 +32,7 @@ int main(){
     cin.tie(0);
 
     InputUserDate();
+    sort(v.begin(), v.end());
     OutputData();
 }
 
