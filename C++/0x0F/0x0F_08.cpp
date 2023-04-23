@@ -6,31 +6,22 @@
 using namespace std;
 
 int cnt;
-vector<string> v[100000];
+vector<tuple<int,int,int, string>> students;
 
 void InputUserDate(){
     cin >> cnt;
 
-    string str;
+    string name;
+    int kor, eng, math;
     for(int i=0; i<cnt ;i++){
-        for(int j=0; j<4; j++){
-            cin >> str;
-            v[i].push_back(str);
-        }
+        cin >> name >> kor >> eng >> math;
+        students.push_back({-kor, eng, -math, name});
     }
 }
 
 void OutputData(){
-    for(int i=0; i< cnt; i++){
-        cout << v[i][0] << "\n";
-    }
-}
-
-bool Cmp(const string a, const string b){
-    if(a[1] != b[1]) return a[1] > b[1];
-    if(a[2] != b[2]) return a[2] < b[2];
-    if(a[3] != b[3]) return a[3] > b[3];
-    return a[0] < b[0];
+    for(auto& s : students)
+        cout << get<3>(s) << "\n";
 }
 
 int main(){
@@ -39,6 +30,8 @@ int main(){
     cin.tie(0);
  
     InputUserDate();
+    sort(students.begin(), students.end());
     OutputData();
 }
 
+// tuple
