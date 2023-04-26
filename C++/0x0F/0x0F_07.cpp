@@ -6,7 +6,6 @@
 using namespace std;
 
 vector<string> v;
-int a[26][1000];
 
 void Check(string str){
     for(int i=0; i<str.length(); i++){

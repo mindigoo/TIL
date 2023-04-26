@@ -33,5 +33,3 @@ int main(){
     sort(students.begin(), students.end());
     OutputData();
 }
-
-// tuple
