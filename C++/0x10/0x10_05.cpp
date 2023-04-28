@@ -1,15 +1,17 @@
-// https://www.acmicpc.net/problem/1003
-// 1003번. 피보나치 함수
+// https://www.acmicpc.net/problem/1912
+// 1912번. 연속합
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
-void InputUserData(){
+int cnt, max_sum = 0;
 
+void InputUserData(){
+    cin >> cnt;
 }
 
-void CheckTable(){
+void Check(){
 
 }
 
@@ -23,6 +25,6 @@ int main(){
     cin.tie(0);
 
     InputUserData();
-    CheckTable();
+    Check();
     OutputResultData();
 }
