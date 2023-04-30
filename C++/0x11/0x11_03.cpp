@@ -1,29 +1,34 @@
-// https://www.acmicpc.net/problem/2457
-// 2457번. 공주님의 정원
+// https://www.acmicpc.net/problem/1541
+// 1541번. 잃어버린 괄호
+
+// 문제 이해 X
+// 다시 풀기
 
 #include<bits/stdc++.h>
 
 using namespace std;
 
-int arr[1005];
+int tmp, ans;
+int sign = 1;
 
-int main(){
+int main(void) {
+    
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int num;
-    cin >> num;
-
-    for(int i = 0; i < num; i++){
-        cin >> arr[i];
+    string input;
+    cin >> input;
+    for (char c: input){
+      if (c == '+' || c == '-'){
+        ans += tmp * sign;
+        if (c == '-') sign = -1;
+        tmp = 0;
+      }
+      else{
+        tmp *= 10;
+        tmp += c - '0';
+      }
     }
-
-    sort(arr, arr+num);
-
-    int sum = 0;
-    for(int i = 0; i < num; i++){
-        sum += arr[i] * (num-i);
-    }
-
-    cout << sum << "\n";
+    ans += tmp * sign;
+    cout << ans;
 }
