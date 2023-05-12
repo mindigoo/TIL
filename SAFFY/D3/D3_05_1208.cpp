@@ -11,7 +11,7 @@ int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int T = 1;
+    int T = 10;
 
     for(int test_case = 1; test_case <= T; test_case++){
 
@@ -46,6 +46,13 @@ int main(){
 
             arr[max_pos]--;
             arr[max_pos-1]++;
+        }
+
+        while(!arr[min_pos]){
+            min_pos++;
+        }
+        while(!arr[max_pos]){
+            max_pos--;
         }
 
         cout << "#" << test_case << " " << max_pos - min_pos << "\n";
