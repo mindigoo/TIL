@@ -2,8 +2,6 @@
 
 #include<bits/stdc++.h>
 
-typedef unsigned char uchar;
-
 using namespace std;
 
 int main(){
